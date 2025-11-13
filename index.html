@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>??? ???? � ??????</title>
+<title>چتِ محلی — آفلاین</title>
 <style>
   :root{
     --bg1: #f4f7fb;
@@ -18,19 +18,19 @@
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family: "Vazir", "Segoe UI", Tahoma, Arial, sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);-webkit-font-smoothing:antialiased}
   .wrap{max-width:1100px;margin:28px auto;padding:18px;display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start}
-  /* ???? ??????? */
+  /* کارت شیشه‌ای */
   .card{background: var(--card);border-radius:14px;padding:16px;box-shadow: 0 8px 30px rgba(15,23,36,0.08);border:1px solid rgba(15,23,36,0.04);backdrop-filter: blur(6px)}
   .title{font-weight:700;font-size:1.1rem;margin-bottom:8px}
   .muted{color:var(--muted);font-size:13px}
 
-  /* ???????? */
+  /* ورودی‌ها */
   label{display:block;font-size:13px;margin-top:10px;color:var(--muted)}
   input[type="text"], input[type="password"], textarea{
     width:100%;padding:12px;border-radius:12px;border:1px solid rgba(15,23,36,0.06);background:transparent;color:var(--text);margin-top:6px;font-size:14px;outline:none;
   }
   textarea{min-height:88px;resize:vertical}
 
-  /* ???? ??? ??????? ??? */
+  /* دکمه های شیشه‌ای گرد */
   .btn{
     display:inline-flex;gap:10px;align-items:center;justify-content:center;
     padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.6);
@@ -40,10 +40,10 @@
   .btn:hover{transform: translateY(-4px);box-shadow:0 10px 30px rgba(15,23,36,0.12)}
   .btn-accent{background: linear-gradient(90deg,var(--accent),#6fb7ff);color:white;border:none}
 
-  /* ???? ????? */
+  /* نوار وضعیت */
   .status{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:12px}
 
-  /* ???? ??????? */
+  /* لیست پیام‌ها */
   .messages{height:62vh;overflow:auto;padding:12px;display:flex;flex-direction:column-reverse;gap:12px}
   .message{
     align-self:flex-start;max-width:86%;
@@ -54,75 +54,75 @@
   .message.me{align-self:flex-end;background:linear-gradient(90deg,var(--accent),#6fb7ff);color:white}
   .meta{font-size:12px;color:var(--muted);margin-bottom:8px}
 
-  /* ???????? ????? */
+  /* کنترل‌ها پایین */
   .controls{display:flex;gap:10px;align-items:center;margin-top:12px}
   .glass-small{padding:8px 12px;border-radius:999px;border:1px solid rgba(15,23,36,0.05);background:rgba(255,255,255,0.5);cursor:pointer}
 
-  /* ????????? */
+  /* ریسپانسیو */
   @media (max-width:920px){
     .wrap{grid-template-columns:1fr; padding:12px}
     .messages{height:50vh}
   }
 
-  /* ????? ???? */
+  /* فیدبک ساده */
   .hint{font-size:13px;color:var(--muted);margin-top:8px}
   .danger{color:#b91c1c;font-weight:700}
 </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- SIDEBAR: ???? -->
-    <aside class="card" aria-label="????">
-      <div class="title">???? / ??????? (??? + ??)</div>
-      <div class="muted">?? ?? ??? ? ?? ???? ?? � ????? ?? ????? ???? ????.</div>
+    <!-- SIDEBAR: ورود -->
+    <aside class="card" aria-label="ورود">
+      <div class="title">ورود / ثبت‌نام (نام + کد)</div>
+      <div class="muted">با یک نام و کد وارد شو — ایمیل یا شماره لازم نیست.</div>
 
-      <label>??? ????? ????????</label>
-      <input id="inpName" type="text" placeholder="????? ramtin123" maxlength="30">
+      <label>نام نمایش داده‌شده</label>
+      <input id="inpName" type="text" placeholder="مثلاً ramtin123" maxlength="30">
 
-      <label>?? (PIN)</label>
-      <input id="inpPin" type="password" placeholder="????? 4 ???????" maxlength="30">
+      <label>کد (PIN)</label>
+      <input id="inpPin" type="password" placeholder="حداقل 4 کاراکتر" maxlength="30">
 
       <div style="display:flex;gap:10px;margin-top:12px">
-        <button id="btnLogin" class="btn btn-accent">???? / ???????</button>
-        <button id="btnLogout" class="btn" style="display:none">????</button>
+        <button id="btnLogin" class="btn btn-accent">ورود / ثبت‌نام</button>
+        <button id="btnLogout" class="btn" style="display:none">خروج</button>
       </div>
 
       <div class="status">
         <div>
-          <div class="muted">????? ????</div>
-          <div id="userStatus" class="title" style="font-size:0.98rem">???? ?? ??????</div>
+          <div class="muted">وضعیت حساب</div>
+          <div id="userStatus" class="title" style="font-size:0.98rem">خارج از سامانه</div>
         </div>
       </div>
 
-      <div class="hint">????: ??????? ??? ??? ?????? ??? ????? ?????? ? ???? ??????? ?? ???? ?????? ???.</div>
+      <div class="hint">توجه: اطلاعات فقط روی مرورگر شما ذخیره می‌شود و قابل بازیابی در همان مرورگر است.</div>
     </aside>
 
-    <!-- MAIN: ????? ? ?????? ???? -->
-    <main class="card" aria-label="??">
+    <!-- MAIN: ارسال و خواندن پیام -->
+    <main class="card" aria-label="چت">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div>
-          <div class="title">???????</div>
-          <div class="muted">??? ??? � ???? ???? ???????? ???? ??? �???????? ???????� ???</div>
+          <div class="title">گفت‌وگو</div>
+          <div class="muted">فقط متن — برای دیدن پیام‌های جدید روی «بارگذاری پیام‌ها» بزن</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
-          <button id="btnLoad" class="btn">???????? ???????</button>
-          <button id="btnClearAll" class="btn" title="??? ??? ???????? ????">??? ???</button>
+          <button id="btnLoad" class="btn">بارگذاری پیام‌ها</button>
+          <button id="btnClearAll" class="btn" title="حذف همه پیام‌های محلی">حذف همه</button>
         </div>
       </div>
 
       <div style="margin-top:12px">
-        <textarea id="txtMessage" placeholder="???? ??? ?? ?????..." maxlength="2000"></textarea>
+        <textarea id="txtMessage" placeholder="پیام خود را بنویس..." maxlength="2000"></textarea>
         <div class="controls">
-          <button id="btnSend" class="btn btn-accent">????? ????</button>
-          <div style="margin-left:auto" class="muted">???: ???? ????? ?? ??????</div>
+          <button id="btnSend" class="btn btn-accent">ارسال پیام</button>
+          <div style="margin-left:auto" class="muted">حجم: متن، ذخیره در مرورگر</div>
         </div>
       </div>
 
       <hr style="margin:14px 0;border:none;border-top:1px solid rgba(15,23,36,0.04)">
 
-      <div class="title" style="font-size:1rem;margin-bottom:8px">??????? (???????? ????)</div>
+      <div class="title" style="font-size:1rem;margin-bottom:8px">پیام‌ها (جدیدترین بالا)</div>
       <div id="messages" class="messages" aria-live="polite" aria-atomic="true">
-        <!-- ??????? ????? ???? ??????? -->
+        <!-- پیام‌ها نمایش داده می‌شوند -->
       </div>
     </main>
   </div>
@@ -133,15 +133,15 @@
   - Users stored in localStorage.users map: { uid: {name, pinHash, createdAt}}
   - Current user in localStorage.currentUser = uid
   - Messages in localStorage.messages = [{id, uid, name, text, time}]
-  - load messages: non-realtime (????? ???? ???? ???????? ?? ????)
-  NOTE: ??? ????? ??????/???? ???? ???? ??????? ? ????? ????? ???? ?? ?????? ?? ????? ???? ???.
+  - load messages: non-realtime (کاربر باید دکمه بارگذاری را بزند)
+  NOTE: این سیستم آفلاین/محلی است؛ برای همزمانی و ذخیره سروری نیاز به بک‌اند یا سرویس ابری است.
 */
 
 const LS_USERS_KEY = 'localchat_users_v1';
 const LS_CURRENT_KEY = 'localchat_current_v1';
 const LS_MESSAGES_KEY = 'localchat_messages_v1';
 
-// ????????
+// المان‌ها
 const inpName = document.getElementById('inpName');
 const inpPin = document.getElementById('inpPin');
 const btnLogin = document.getElementById('btnLogin');
@@ -192,12 +192,12 @@ function saveMessages(){ localStorage.setItem(LS_MESSAGES_KEY, JSON.stringify(me
 // update UI based on login
 function refreshUI(){
   if(currentUid && users[currentUid]){
-    userStatus.textContent = `???? ???: ${users[currentUid].name}`;
+    userStatus.textContent = `وارد شدی: ${users[currentUid].name}`;
     btnLogin.style.display = 'none';
     btnLogout.style.display = 'inline-flex';
     inpName.value = users[currentUid].name;
   } else {
-    userStatus.textContent = '???? ?? ??????';
+    userStatus.textContent = 'خارج از سامانه';
     btnLogin.style.display = 'inline-flex';
     btnLogout.style.display = 'none';
   }
@@ -207,7 +207,7 @@ function refreshUI(){
 btnLogin.addEventListener('click', async ()=>{
   const name = (inpName.value || '').trim();
   const pin = (inpPin.value || '').trim();
-  if(!name || pin.length < 4){ alert('????? ??? ? ?? (????? 4 ???????) ?? ???? ??'); return; }
+  if(!name || pin.length < 4){ alert('لطفاً نام و کد (حداقل 4 کاراکتر) را وارد کن'); return; }
 
   // check if a user with this name exists
   const existingUid = Object.keys(users).find(k => users[k].name.toLowerCase() === name.toLowerCase());
@@ -219,9 +219,9 @@ btnLogin.addEventListener('click', async ()=>{
       currentUid = existingUid;
       saveCurrent();
       refreshUI();
-      alert('???? ????');
+      alert('ورود موفق');
     } else {
-      alert('?? ?????? ???');
+      alert('کد اشتباه است');
     }
   } else {
     // create new user
@@ -231,7 +231,7 @@ btnLogin.addEventListener('click', async ()=>{
     currentUid = newUid;
     saveCurrent();
     refreshUI();
-    alert('???? ????? ?? ? ???? ???');
+    alert('حساب ساخته شد و وارد شدی');
   }
 
   // clear pin input for safety
@@ -240,14 +240,14 @@ btnLogin.addEventListener('click', async ()=>{
 
 // logout
 btnLogout.addEventListener('click', ()=>{
-  if(confirm('?????')){ currentUid = null; saveCurrent(); refreshUI(); }
+  if(confirm('خروج؟')){ currentUid = null; saveCurrent(); refreshUI(); }
 });
 
 // send message (only text)
 btnSend.addEventListener('click', ()=>{
   const text = (txtMessage.value || '').trim();
-  if(!text) return alert('????? ??? ???? ??');
-  if(!currentUid || !users[currentUid]) return alert('????? ???? ??');
+  if(!text) return alert('لطفاً متن وارد کن');
+  if(!currentUid || !users[currentUid]) return alert('ابتدا وارد شو');
 
   const msg = {
     id: 'm_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,6),
@@ -259,7 +259,7 @@ btnSend.addEventListener('click', ()=>{
   messages.push(msg);
   saveMessages();
   txtMessage.value = '';
-  alert('???? ????? ??. ?????? ???? ???? ?? ???? "???????? ???????" ?? ?????.');
+  alert('پیام ذخیره شد. دیگران برای دیدن آن باید "بارگذاری پیام‌ها" را بزنند.');
 });
 
 // load messages (non-realtime). newest shown first
@@ -269,7 +269,7 @@ btnLoad.addEventListener('click', ()=>{
 
 // delete all messages (local)
 btnClearAll.addEventListener('click', ()=>{
-  if(confirm('??? ?????? ???? ???????? ???? ??? ????')){ messages = []; saveMessages(); renderMessages(); alert('??? ??'); }
+  if(confirm('آیا مطمئنی همهٔ پیام‌های محلی پاک شود؟')){ messages = []; saveMessages(); renderMessages(); alert('پاک شد'); }
 });
 
 // render messages to DOM (newest at top per UI request)
@@ -278,7 +278,7 @@ function renderMessages(){
   // show newest first
   const arr = messages.slice().sort((a,b)=> b.time - a.time);
   if(arr.length === 0){
-    const n = document.createElement('div'); n.className='muted'; n.textContent='??? ????? ????? ????.';
+    const n = document.createElement('div'); n.className='muted'; n.textContent='هیچ پیامی موجود نیست.';
     messagesEl.appendChild(n); return;
   }
   arr.forEach(m=>{
@@ -286,7 +286,7 @@ function renderMessages(){
     div.className = 'message' + (m.uid === currentUid ? ' me' : '');
     const meta = document.createElement('div'); meta.className='meta';
     const t = new Date(m.time);
-    meta.textContent = `${m.name} � ${t.toLocaleString()}`;
+    meta.textContent = `${m.name} — ${t.toLocaleString()}`;
     const p = document.createElement('div'); p.textContent = m.text;
     div.appendChild(meta);
     div.appendChild(p);
